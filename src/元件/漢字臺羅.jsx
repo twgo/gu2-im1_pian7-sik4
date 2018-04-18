@@ -36,7 +36,7 @@ export default class 漢字臺羅 extends React.Component {
           src={後端.聽音檔(網址)}
           type="audio/wav" controls>
         </audio>
-        辦識完成<br/>
+        辨識完成<br/>
         {一句陣列}<br/>
       </div>
     );

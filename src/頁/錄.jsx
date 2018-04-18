@@ -64,7 +64,7 @@ export default class 錄 extends React.Component {
     this.fileReader.onload = function () {
         let encoded_blob = btoa(new Uint8Array(this.fileReader.result));
         let { 全部確定的資料 } = this.state;
-        superagent.post(後端.辦識音檔())
+        superagent.post(後端.辨識音檔())
           .set('Content-Type', 'application/x-www-form-urlencoded')
           .send({
             語言: '閩南語',
