@@ -13,7 +13,6 @@ script:
 - npm run $TSI2_LING7
 deploy:
   provider: pages
-  fqdn: asr-backend.iis.sinica.edu.tw
   skip_cleanup: true
   local_dir: build/
   github_token: $GITHUB_TOKEN
