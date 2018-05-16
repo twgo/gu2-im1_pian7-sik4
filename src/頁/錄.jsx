@@ -67,7 +67,7 @@ export default class 錄 extends React.Component {
         superagent.post(後端.辨識音檔())
           .set('Content-Type', 'application/x-www-form-urlencoded')
           .send({
-            語言: '閩南語',
+            語言: '臺語',
             blob: encoded_blob,
           })
           .then(({ body })=>(
