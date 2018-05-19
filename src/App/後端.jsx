@@ -1,9 +1,9 @@
 export default class 後端  {
   static 網址() {
 
-    //return 'http://localhost:8000/';
+    //return 'http://localhost:8000';
 
-    // https://服務.意傳.台灣/
+    // https://服務.意傳.台灣
     return 'https://asr-backend.iis.sinica.edu.tw';
   }
 

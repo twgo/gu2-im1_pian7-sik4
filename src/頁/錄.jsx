@@ -2,6 +2,7 @@ import React from 'react';
 import cookie from 'react-cookie';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
+import Promise from 'bluebird';
 import 後端 from '../App/後端';
 
 import 辨識結果 from '../元件/辨識結果';
@@ -10,6 +11,18 @@ import 錄音控制 from '../元件/錄音控制';
 import 音檔表 from '../元件/音檔表';
 
 var debug = Debug('itaigi:錄');
+
+let 送出音檔 = item => (
+  request.post(後端.辦識音檔())
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .send({
+      語言: item.語言,
+      blob: item.encoded_blob,
+    })
+    .then(function(value){
+        console.log('request info', value)
+    })
+)
 
 export default class 錄 extends React.Component {
   constructor(props) {
@@ -63,13 +76,22 @@ export default class 錄 extends React.Component {
     this.fileReader = new FileReader();
     this.fileReader.onload = function () {
         let encoded_blob = btoa(new Uint8Array(this.fileReader.result));
-        let { 全部確定的資料 } = this.state;
+        
         superagent.post(後端.辨識音檔())
           .set('Content-Type', 'application/x-www-form-urlencoded')
           .send({
             語言: '臺語',
             blob: encoded_blob,
           })
+          
+         Promise.each([{
+             語言: '臺華', encoded_blob
+           },{
+             語言: '華語', encoded_blob
+           },{
+             語言: '臺語', encoded_blob
+           }], (item)=>(送出音檔(item))
+          )
           .then(({ body })=>(
             this.setState({ 當佇送: false, 上傳好矣: true })
           ))
@@ -78,7 +100,6 @@ export default class 錄 extends React.Component {
             alert('上傳失敗，麻煩檢查網路或回報錯誤～'),
             this.setState({ 當佇送: false })
           ));
-        // this.setState({ 當佇送: false, 上傳好矣: true });
       }.bind(this);
 
     this.fileReader.readAsArrayBuffer(確定的音檔);
