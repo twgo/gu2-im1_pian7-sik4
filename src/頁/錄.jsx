@@ -10,17 +10,14 @@ import 錄好上傳 from '../元件/錄好上傳';
 import 錄音控制 from '../元件/錄音控制';
 import 音檔表 from '../元件/音檔表';
 
-var debug = Debug('itaigi:錄');
+var debug = Debug('tshi3:錄');
 
 let 送出音檔 = item => (
-  request.post(後端.辦識音檔())
+  superagent.post(後端.辨識音檔())
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .send({
       語言: item.語言,
       blob: item.encoded_blob,
-    })
-    .then(function(value){
-        console.log('request info', value)
     })
 )
 
@@ -77,12 +74,6 @@ export default class 錄 extends React.Component {
     this.fileReader.onload = function () {
         let encoded_blob = btoa(new Uint8Array(this.fileReader.result));
         
-        superagent.post(後端.辨識音檔())
-          .set('Content-Type', 'application/x-www-form-urlencoded')
-          .send({
-            語言: '臺語',
-            blob: encoded_blob,
-          })
           
          Promise.each([{
              語言: '臺華', encoded_blob
