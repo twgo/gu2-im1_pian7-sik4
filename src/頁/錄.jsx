@@ -117,6 +117,5 @@ export default class 錄 extends React.Component {
         <辨識結果 />
       </div>
       );
-    
   }
 }
