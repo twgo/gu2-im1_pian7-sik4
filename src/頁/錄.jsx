@@ -83,6 +83,8 @@ export default class 錄 extends React.Component {
              語言: '臺語', encoded_blob
            },{
              語言: '2018臺語', encoded_blob
+           },{
+             語言: '2018臺語加詞', encoded_blob
            }], (item)=>(送出音檔(item))
           )
           .then(({ body })=>(
