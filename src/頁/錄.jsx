@@ -76,10 +76,10 @@ export default class 錄 extends React.Component {
         
           
          Promise.each([{
-//             語言: '臺華', encoded_blob
-//           },{
-//             語言: '華語', encoded_blob
-//           },{
+             語言: '臺華', encoded_blob
+           },{
+             語言: '華語', encoded_blob
+           },{
              語言: '2018華語8k', encoded_blob
            },{
              語言: '臺語', encoded_blob
