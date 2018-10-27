@@ -82,6 +82,8 @@ export default class 錄 extends React.Component {
            },{
              語言: '2018華語8k', encoded_blob
            },{
+             語言: '2018華語8k加詞', encoded_blob
+           },{
              語言: '臺語', encoded_blob
            },{
              語言: '2018臺語', encoded_blob
